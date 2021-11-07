@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 
 import pandas as pd
 import numpy as np
+import math 
 
 st.title("Heart attack event prediction")
 st.markdown("---")
@@ -17,7 +18,13 @@ st.markdown("Regarding our given data and our project's goal we were sure that i
 st.markdown("You can see our initial dataset here:")
 st.write(data)
 
+st.markdown("### Data Prerprocessing")
+st.markdown("---")
 
+data['age']=data['age'].apply(np.ceil)
+data['platelets']=data['platelets'].apply(np.floor)
+
+st.write(data)
 st.markdown("Following this image from our lecture: ")
 st.image("ml_map.png")  # see *
 st.markdown("We decided that it would be best if we first experiment with the **LinearSVC** algorithm. Following this decision and applying the LinearSVC algorithm we found out that it's performance was poor taking into consideration these results:")
@@ -48,8 +55,6 @@ st.markdown("F1 score:")
 st.write(f1_score(y_test, predictions))
 st.markdown("Recall:")
 st.write(recall_score(y_test, predictions))
-st.markdown("Classification report:")
-st.write(classification_report(y_test, predictions))
 
 st.write(
     "Number of mislabeled points out of a total %d points : %d"
@@ -69,8 +74,6 @@ st.markdown("F1 score:")
 st.write(f1_score(y_test, predictions1))
 st.markdown("Recall:")
 st.write(recall_score(y_test, predictions1))
-st.markdown("Classification report:")
-st.write(classification_report(y_test, predictions1))
 
 st.write(
     "Number of mislabeled points out of a total %d points : %d"

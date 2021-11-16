@@ -8,6 +8,14 @@ import pandas as pd
 import numpy as np
 import math 
 
+st.sidebar.title("Navigation")
+rbNav=st.sidebar.radio("Go to",["Home","About Us","Data Preprocessing"])
+
+if rbNav== "About Us":
+    st.title("About Us ")
+    st.markdown("---")
+
+
 st.title("Heart attack event prediction")
 st.markdown("---")
 st.markdown("Team members: **Menelaos Kotoglou**, **Vangelis Photiou**, **Stefanos Christodoulou** ")

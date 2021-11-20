@@ -11,6 +11,25 @@ import numpy as np
 
 # Team and Project Information
 
+st.sidebar.title("Navigation")
+page_names=["Home","Data Preprocessing","LinearSVC","Gaussian Naive Bayes"]
+
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Data Preprocessing","LinearSV" )
+)
+
+rbSelection=st.sidebar.radio("Go to",page_names)
+
+st.sidebar.text("")
+st.sidebar.text("")
+
+st.sidebar.title("🔗Sources")
+st.sidebar.info('https://github.com/menkotoglou/heart-attack-prediction/blob/master/dataset.csv')
+
+st.sidebar.title("🛈 About Us")
+
+
 st.title("Heart attack event prediction")
 st.markdown("---")
 st.markdown("Team members:")
@@ -25,11 +44,11 @@ data = pd.read_csv("dataset.csv")
 st.markdown("You can see our initial dataset here:")
 st.write(data)
 
-st.markdown("The dataset given to us and our project's goal we were sure that it is a classification problem.")
+st.markdown("The dataset given to us and our project's goal we were sure that it is a binary classification problem.")
 
 # Data Exploration
 
-st.markdown("### Data Preprocessing")
+st.header("Data Preprocessing")
 st.markdown("---")
 
 fig1, ax1 = plt.subplots()
@@ -58,7 +77,8 @@ data['serum_creatinine'] = data['serum_creatinine'].map('{:,.1f}'.format)
 
 st.markdown("Hopefully, we didn't find any missing values in the dataset.")
 
-cont_features = ['age', 'platelets']
+cont_features = ['age', 'creatinine_phosphokinase', 
+    'ejection_fraction', 'platelets', 'serum_creatinine', 'serum_sodium']
 
 st.markdown("We use the .describe() function to describe some basic")
 
@@ -76,7 +96,7 @@ fig, ax = plt.subplots()
 ax = sns.heatmap(correlation_matrix, annot=True, vmax=1, square=True, linewidths=.5, cmap="YlGnBu", fmt=".2f")
 st.pyplot(fig)
 
-st.markdown("### Model training")
+st.header("Model training")
 st.markdown("---")
 st.markdown("Following this image from our lecture: ")
 st.image("ml_map.png")  # see *
